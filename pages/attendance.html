@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Attendance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-700 p-4 text-white flex justify-between">
+    <h1 class="text-xl font-bold">Attendance</h1>
+    <a href="../student-dashboard.html" class="hover:underline">Back to Dashboard</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center">Your Attendance</h2>
+
+    <!-- Attendance Summary -->
+    <div class="grid grid-cols-2 gap-4 text-center mb-6">
+      <div class="p-4 border rounded">
+        <p class="text-gray-500">Total Classes</p>
+        <p id="total-classes" class="text-xl font-bold">0</p>
+      </div>
+      <div class="p-4 border rounded">
+        <p class="text-gray-500">Attendance %</p>
+        <p id="attendance-percentage" class="text-xl font-bold">0%</p>
+      </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <canvas id="attendanceChart" class="mb-6"></canvas>
+
+    <!-- Detailed Record Table -->
+    <h3 class="text-lg font-bold mb-2">Attendance Record</h3>
+    <table class="w-full border-collapse border text-center">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border px-4 py-2">Date</th>
+          <th class="border px-4 py-2">Status</th>
+        </tr>
+      </thead>
+      <tbody id="attendance-table">
+        <!-- JS will insert rows here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Sample attendance data
+    const attendanceData = [
+      { date: '2025-09-01', status: 'Present' },
+      { date: '2025-09-02', status: 'Present' },
+      { date: '2025-09-03', status: 'Absent' },
+      { date: '2025-09-04', status: 'Present' },
+      { date: '2025-09-05', status: 'Present' },
+      { date: '2025-09-06', status: 'Absent' },
+      { date: '2025-09-07', status: 'Present' },
+    ];
+
+    // Calculate summary
+    const totalClasses = attendanceData.length;
+    const totalPresent = attendanceData.filter(a => a.status === 'Present').length;
+    const totalAbsent = totalClasses - totalPresent;
+    const attendancePercentage = ((totalPresent / totalClasses) * 100).toFixed(2);
+
+    // Update summary section
+    document.getElementById('total-classes').textContent = totalClasses;
+    document.getElementById('attendance-percentage').textContent = attendancePercentage + '%';
+
+    // Render attendance table
+    const tableBody = document.getElementById('attendance-table');
+    attendanceData.forEach(record => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="border px-4 py-2">${record.date}</td>
+        <td class="border px-4 py-2 ${record.status === 'Present' ? 'text-green-600' : 'text-red-600'}">
+          ${record.status}
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    // Render pie chart
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Present', 'Absent'],
+        datasets: [{
+          data: [totalPresent, totalAbsent],
+          backgroundColor: ['#22c55e', '#ef4444'],
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

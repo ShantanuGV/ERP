@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-purple-700 p-4 text-white flex justify-between">
+    <h1 class="text-xl font-bold">Admin Dashboard</h1>
+    <a href="ERP.html" class="hover:underline">Logout</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+
+    <!-- Manage Students -->
+    <div class="bg-white shadow-lg rounded-xl p-4 text-center">
+      <h2 class="text-lg font-bold mb-2">Manage Students</h2>
+      <p class="text-gray-600">Add or edit student details</p>
+      <button class="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Open</button>
+    </div>
+
+    <!-- Manage Teachers -->
+    <div class="bg-white shadow-lg rounded-xl p-4 text-center">
+      <h2 class="text-lg font-bold mb-2">Manage Teachers</h2>
+      <p class="text-gray-600">Add or edit teacher details</p>
+      <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Open</button>
+    </div>
+
+    <!-- Create Events -->
+    <div class="bg-white shadow-lg rounded-xl p-4 text-center">
+      <h2 class="text-lg font-bold mb-2">Create Event</h2>
+      <p class="text-gray-600">Organize new college events</p>
+      <button class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">Create</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
