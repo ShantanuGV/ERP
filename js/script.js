@@ -25,15 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Redirect based on role
       if (role === "student") {
-        window.location.href = "student-dashboard.html";
+        window.location.href = "/student-dashboard.html";
       } else if (role === "teacher") {
-        window.location.href = "teacher/teacher-dashboard.html";
+        window.location.href = "/teacher/teacher-dashboard.html";
       } else if (role === "admin") {
-        window.location.href = "admin-dashboard.html";
+        window.location.href = "/admin-dashboard.html";
       } else {
         alert("❌ Invalid role selected.");
       }
     });
   }
 });
+
 
