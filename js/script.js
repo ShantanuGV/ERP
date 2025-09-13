@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (role === "student") {
         window.location.href = "student-dashboard.html";
       } else if (role === "teacher") {
-        window.location.href = "teacher-dashboard.html";
+        window.location.href = "teacher/teacher-dashboard.html";
       } else if (role === "admin") {
         window.location.href = "admin-dashboard.html";
       } else {
@@ -36,3 +36,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
